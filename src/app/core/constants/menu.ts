@@ -12,8 +12,8 @@ export class Menu {
           route: '/dashboard',
           children: [
             { label: 'Home', route: '/dashboard/home' },
-            { label: 'Competition', route: '/dashboard/nfts' },
-            { label: 'Membre', route: '/dashboard/podcast' },
+            { label: 'Competition', route: '/dashboard/competition' },
+            { label: 'Membre', route: '/dashboard/member' },
             { label: 'Level', route: '/dashboard/level' },
             { label: 'Fish', route: '/dashboard/fish' },
             { label: 'Ranking', route: '/dashboard/ranking' }
