@@ -1,8 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Competition } from '../../../models/competition';
+import { Competition } from '../../../pages/competition/interface/competition';
 import { CompetitionTableItemComponent } from '../competition-table-item/competition-table-item.component'; 
 import { CompetitionPaginationComponent } from '../competition-pagination/competition-pagination.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Observable, map, startWith, catchError, of } from 'rxjs';
+import { ApiResponse } from '../../../pages/competition/interface/api-response';
+import { Page } from '../../../pages/competition/interface/page';
+import { CompetitionService } from '../../../pages/competition/service/competition.service';
 @Component({
   selector: '[app-competition-table]',
   standalone: true,
@@ -14,73 +19,25 @@ import { CompetitionPaginationComponent } from '../competition-pagination/compet
   templateUrl: './competition-table.component.html',
 })
 export class CompetitionTableComponent {
-  public activeAction: Competition[] = [];
+  
+  @Input() competitionState = <any>{};
+  // competitionState$!: Observable<{ appState: string, appData?: ApiResponse<Page>, error?: HttpErrorResponse}>;
+  // constructor(private competitionService: CompetitionService){}
 
-  constructor() {
-    this.activeAction = [
-      {
-        id: 1346771,
-        title: 'Cripto Cities',
-        creator: 'Jenny Wilson',
-        image:
-          'https://lh3.googleusercontent.com/t_S1sM__cKCFbuhbwQ5JHKNRRggKuPH2O3FM_-1yOxJLRzz9VRMAPaVBibgrumZG3qsB1YxEuwvB7r9rl-F-gI6Km9NlfWhecfPS=h500',
-        avatar: 'https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-13.jpg',
-        ending_in: '1h 43m 52s',
-        last_bid: 22.0,
-        price: 35330.9,
-        instant_price: 22.0,
-      },
-      {
-        id: 1346772,
-        title: 'Lady Ape Club',
-        creator: 'Jenny Wilson',
-        image:
-          'https://lh3.googleusercontent.com/k95IQpeYutx-lYXwgTZw0kXZl9GAkIOc4Yz3Dr06rndWphZ25kSWyF64aTqT3W4cOxz0eB5LfAss5i9WAR-ZPWVaifijsABLqzEYwHY=h500',
-        avatar: 'https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-13.jpg',
-        ending_in: '2h 00m 02s',
-        last_bid: 2.8,
-        price: 4812.72,
-        instant_price: 2.9,
-      },
-      {
-        id: 1346780,
-        title: 'The King - Gordon Ryan',
-        creator: 'Jenny Wilson',
-        image:
-          'https://lh3.googleusercontent.com/iYNxP1eXG3C6ujTY4REQ9rBea19Z46oKtKkaDS1XA-ED5iFhFmPrvQPzwx8ZwACydCS2wbZ7K1P89XIED3s8JRcT6Pn0M1-sMifeyQ=h500',
-        avatar: 'https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-13.jpg',
-        ending_in: '1h 05m 00s',
-        last_bid: 1.0,
-        price: 1602.77,
-        instant_price: 2.9,
-      },
-      {
-        id: 1346792,
-        title: 'Only by Shvembldr',
-        creator: 'Jenny Wilson',
-        image:
-          'https://lh3.googleusercontent.com/ujFwzDIXN64mJAHZwZ0OgNupowe5jlJPmV8OIrgSDjUAeb3SZRuhsuyPKAw6S2TkUknZvErVVKbzD-rEcs-augb6_LzUE5NVtPxj_w=h500',
-        avatar: 'https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-13.jpg',
-        ending_in: '1h 05m 00s',
-        last_bid: 2.0,
-        price: 1438.17,
-        instant_price: 2.1,
-      },
-      {
-        id: 1346792,
-        title: 'Crypto Coven',
-        creator: 'Jenny Wilson',
-        image:
-          'https://lh3.googleusercontent.com/pwjA4CWS9nto8fCis6JzlWwzQgtHUvLlUWcd501LsGQoVUPL5euwhir-2fjPmsJLJ_ovJ7flH_OgDEaALeZrhSXv8Puq85-lZYWuqto=h500',
-        avatar: 'https://preview.keenthemes.com/metronic8/demo1/assets/media/avatars/300-13.jpg',
-        ending_in: '1h 05m 00s',
-        last_bid: 0.8,
-        price: 1278.38,
-        instant_price: 0.35,
-      },
-    ];
-  }
+  // ngOnInit(): void {
+  //   this.getCompetitions();
+  // }
 
-  ngOnInit(): void {}
+  // public getCompetitions(){
+  //   this.competitionState$ = this.competitionService.getCompetitions().pipe(
+  //     map((response: ApiResponse<Page>) => {
+  //       console.log(response);
+  //       return ({appState: "app_loaded", appData: response});
+  //     }
+  //   ),
+  //   startWith({appState: "app_loading"}),
+  //   catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error}))
+  //   )
+  // }
 
 }

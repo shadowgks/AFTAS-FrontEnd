@@ -3,9 +3,13 @@
     <app-competition-header></app-competition-header>
 
     <!-- Content -->
-    <div>
+    <ng-container >
         <!-- Table -->
-        <div app-competition-table class="md:col-span-2 xl:col-span-3"></div>
+        <div *ngIf="(competitionState$ | async) as state" 
+        [ngSwitch]="state.appState"
+        [competitionState]="state"
+        app-competition-table 
+        class="md:col-span-2 xl:col-span-3"></div>
         <app-competition-pagination></app-competition-pagination>
-    </div>
+    </ng-container>
 </div>

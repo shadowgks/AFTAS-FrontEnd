@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { CurrencyPipe } from '@angular/common';
-import { Competition } from '../../../models/competition';
+import { Competition } from '../../../pages/competition/interface/competition';
 
 
 
@@ -12,13 +12,14 @@ import { Competition } from '../../../models/competition';
   imports: [
     CommonModule, 
     AngularSvgIconModule,
-    CurrencyPipe
+    CurrencyPipe,
   ],
   templateUrl: './competition-table-item.component.html',
   styleUrl: './competition-table-item.component.scss'
 })
 export class CompetitionTableItemComponent {
   @Input() action = <Competition>{};
+  @Input() index !: number;
 
   constructor() {}
 
