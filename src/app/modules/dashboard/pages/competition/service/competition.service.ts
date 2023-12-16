@@ -12,7 +12,7 @@ export class CompetitionService {
 
   constructor(private http: HttpClient) { }
 
-  public getCompetitions(location: string='', numPage: number=0, size: number=8): Observable<ApiResponse<Page>>{
+  public getCompetitions(location: string='', numPage: number=0, size: number=1): Observable<ApiResponse<Page>>{
     return this.http.get<ApiResponse<Page>>(`${this.apiServerUrl}?location=${location}&numPage=${numPage}&size=${size}`)
   }
 }
