@@ -8,13 +8,16 @@ import { Observable, map, startWith, catchError, of } from 'rxjs';
 import { ApiResponse } from '../../../pages/competition/interface/api-response';
 import { Page } from '../../../pages/competition/interface/page';
 import { CompetitionService } from '../../../pages/competition/service/competition.service';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+
 @Component({
   selector: '[app-competition-table]',
   standalone: true,
   imports: [
     CommonModule, 
     CompetitionTableItemComponent,
-    CompetitionPaginationComponent
+    CompetitionPaginationComponent,
+    AngularSvgIconModule
   ],
   templateUrl: './competition-table.component.html',
 })

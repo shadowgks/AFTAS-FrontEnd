@@ -9,6 +9,9 @@ import { ApiResponse } from './interface/api-response';
 import { Page } from './interface/page';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { FormsModule } from '@angular/forms';
+
 
 
 @Component({
@@ -19,13 +22,18 @@ import { HttpClientModule } from '@angular/common/http';
     CompetitionHeaderComponent,
     CompetitionTableComponent,
     CompetitionPaginationComponent,
-    HttpClientModule
+    HttpClientModule,
+    AngularSvgIconModule,
+    FormsModule
   ],
   templateUrl: './competition.component.html',
+  styleUrl: './competition.component.css'
 })
 export class CompetitionComponent implements OnInit{
   competitionState$!: Observable<{ appState: string, appData?: ApiResponse<Page>, error?: HttpErrorResponse}>;
-  responseSeized = new BehaviorSubject<ApiResponse<Page>>(null!);
+  responseSubject = new BehaviorSubject<ApiResponse<Page>>(null!);
+  private currentPageSubject = new BehaviorSubject<number>(0);
+  currentPage$ = this.currentPageSubject.asObservable();
 
   constructor(private competitionService: CompetitionService){}
 
@@ -37,6 +45,7 @@ export class CompetitionComponent implements OnInit{
     this.competitionState$ = this.competitionService.getCompetitions().pipe(
       map((response: ApiResponse<Page>) => {
         console.log(response);
+        this.currentPageSubject.next(response.result.page.number);
         return ({appState: "app_loaded", appData: response});
       }
     ),
@@ -45,16 +54,21 @@ export class CompetitionComponent implements OnInit{
     )
   }
 
-  public getCompetitionOfPage(name?:string, numOfPage?: number){
+  public clickNumberPagination(name?: string, numOfPage: number = 0){
     this.competitionState$ = this.competitionService.getCompetitions(name, numOfPage).pipe(
       map((response: ApiResponse<Page>) => {
-        this.responseSeized.next(response);
+        this.responseSubject.next(response);
         console.log(response);
+        this.currentPageSubject.next(numOfPage!);
         return ({appState: "app_loaded", appData: response});
       }
     ),
-    startWith({appState: "app_loaded", appData: this.responseSeized.value}),
+    startWith({appState: "app_loaded", appData: this.responseSubject.value}),
     catchError((error: HttpErrorResponse) => of({ appState: 'app_error', error}))
     )
+  }
+
+  public clickNextOrPrevious(name?: string, direction?: string){
+    this.clickNumberPagination(name, direction === 'next' ? this.currentPageSubject.value+1 : this.currentPageSubject.value-1);
   }
 }

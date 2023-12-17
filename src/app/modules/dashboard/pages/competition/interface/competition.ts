@@ -7,6 +7,6 @@ export interface Competition {
     endTime: string;
     numberOfParticipants: number;
     location: string;
-    amount: bigint;
+    amount: number;
   }
   
