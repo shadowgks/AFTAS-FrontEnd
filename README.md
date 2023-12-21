@@ -7,19 +7,19 @@ The Aftas Sports Club, based in Mirleft, Tiznit, is dedicated to various sports 
 
 #### Admin Features:
 
-1- Add Competition
-2- Assign a unique code for each competition.
-3- Input date, start time, end time, participant count, and location.
-4- View Competitions List with Filters
-5- Filter ongoing competitions.
-6- Filter closed competitions.
-7- Register Members for a Competition
-8- Search for a member using number, name, or surname.
-9- Register members who aren't already enlisted for a competition.
-10- Record Competition Result
-11- Log the number of fishes caught during the competition.
-12- Confirm participation after entering the result.
-13- View Podium
+1. Add Competition
+2. Assign a unique code for each competition.
+3. Input date, start time, end time, participant count, and location.
+4. View Competitions List with Filters
+5. Filter ongoing competitions.
+6. Filter closed competitions.
+7. Register Members for a Competition
+8. Search for a member using number, name, or surname.
+9. Register members who aren't already enlisted for a competition.
+10. Record Competition Result
+11. Log the number of fishes caught during the competition.
+12. Confirm participation after entering the result.
+13. View Podium
 
 #### Steps to run the application
 
