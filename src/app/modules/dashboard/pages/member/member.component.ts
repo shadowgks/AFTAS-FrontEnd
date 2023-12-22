@@ -1,6 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { MemberHeaderComponent } from '../../components/member/member-header/member-header.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { ApiResponse } from '../../model/api-response';
+import { Observable, catchError, map, of, startWith } from 'rxjs';
+import { Member } from './models/member';
+import { MemberService } from './service/member.service';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { CommonModule } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
     selector: 'app-member',
@@ -8,20 +18,125 @@ import { MemberHeaderComponent } from '../../components/member/member-header/mem
     standalone: true,
     imports: [
         MemberHeaderComponent,
-        NgFor,
+        AngularSvgIconModule,
+        CommonModule,
+        FormsModule,
+        NgFor
     ],
 })
-export class PodcastComponent {
 
-  public listening = [
-    { title: "Podpah", subtitle: "podpah", image: "https://i.scdn.co/image/ab67656300005f1fda018f5c18ecebc5d3ff3b59" },
-    { title: "Inteligência Ltda.", subtitle: "Rogério Vilela", image: "https://i.scdn.co/image/ab67656300005f1f11bcdb0577b867bebbe167c0" },
-    { title: "Poddelas", subtitle: "poddelas", image: "https://i.scdn.co/image/ab67656300005f1f7816cf087d5372059d5242c1" },
-    { title: "Ticaracaticast", subtitle: "Ticaracaticast", image: "https://i.scdn.co/image/ab67656300005f1fbe52b62cd2456fdd6712a02e" },
-    { title: "Mau Acompanhado", subtitle: "Jovem Nerd", image: "https://i.scdn.co/image/ab67656300005f1f003ae3aeaf3c898e0124760b" },
-    { title: "Quem pode, POD", subtitle: "Giovanna Ewbank e Fernanda Paes Leme", image: "https://i.scdn.co/image/ab67656300005f1f16642a90f8b553557b7109c4" },
-    { title: "Bocadinhas", subtitle: "Lucas Inutilismo", image: "https://i.scdn.co/image/ab67656300005f1febb8be633fc89f1582dc18fe" },
-    { title: "Mauricio Meirelles Podcast", subtitle: "Maurício Meirelles", image: "https://i.scdn.co/image/ab67656300005f1f44f8f1506e01f4628cfd348e" },
-  ]
+export class MemberComponent implements OnInit {
+    memberState$!: Observable<{ appState: string, appData?: ApiResponse<Member> }>;
+    
+    constructor(private memberService: MemberService) { }
+    
+    //select and input-search
+    selectedIdentity?: string;
+    searchTerm = '';
+    appState!: string;
+
+    ngOnInit(): void {
+        this.getMember();
+    }
+
+    public getMember() {
+        this.memberState$ = this.memberService.getMembers().pipe(
+            map((response: ApiResponse<Member>) => {
+                console.log(response);
+                return ({ appState: "app_loaded", appData: response });
+            }),
+            startWith({ appState: "app_loading" }),
+            catchError((error: HttpErrorResponse) => of({ appState: "app_error", error })),
+        )
+    }
+
+    public saveMember(addForm: NgForm) {
+        this.memberService.saveMember(addForm.value).subscribe(
+            (response: ApiResponse<Member>) => {
+                console.log(response);
+                this.getMember();
+
+                // get btn close modal
+                const btnClose = document.getElementById('closeModalAdd');
+                btnClose?.click();
+
+                // sweet alert
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: response.message
+                })
+            },
+            (httpError: HttpErrorResponse) => {
+                if (httpError.error.errorsValidation) {
+                    // sweet alert
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'warning',
+                        title: 'You must be validate data!'
+                    })
+                    for (const keyError of Object.keys(httpError.error.errorsValidation)) {
+                        addForm.controls[keyError].setErrors({ "validationError": httpError.error.errorsValidation[keyError] })
+                    }
+                }
+                if (httpError.error.error) {
+                    // sweet alert
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'error',
+                        title: httpError.error.error
+                    })
+                }
+            }
+        )
+    }
+
+    public searchMembers(){        
+        if(this.searchTerm == ''){
+            this.getMember();
+        }else{
+            this.memberState$ = this.memberService.searchMembers(this.searchTerm).pipe(
+                map((response: ApiResponse<Member>) => {
+                    console.log(response);
+                    return ({ appState: "app_loaded", appData: response });
+                }),
+                startWith({ appState: "app_loading" }),
+                catchError((error: HttpErrorResponse) => of({ appState: "app_error", error })),
+            )
+        }
+    }
 
 }

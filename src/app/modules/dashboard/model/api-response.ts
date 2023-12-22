@@ -1,7 +1,7 @@
 
 export interface ApiResponse<T> {
     message: string,
-    result: { page: T },
+    result: any,
     errorsValidation: string,
     error: string
 }

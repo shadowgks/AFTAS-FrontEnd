@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CompetitionModalComponent } from '../competition-modal/competition-modal.component';
-
+import { Observable } from "rxjs";
+import { ApiResponse } from '../../../model/api-response';
+import { Page } from '../../../pages/competition/models/page';
 @Component({
   selector: 'app-competition-header',
   standalone: true,
   imports: [
     CommonModule,
-    CompetitionModalComponent
   ],
   templateUrl: './competition-header.component.html',
 })
 export class CompetitionHeaderComponent {
-
+  
 }

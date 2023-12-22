@@ -14,8 +14,7 @@ export class Menu {
             { label: 'Home', route: '/dashboard/home' },
             { label: 'Competition', route: '/dashboard/competition' },
             { label: 'Membre', route: '/dashboard/member' },
-            { label: 'Level', route: '/dashboard/level' },
-            { label: 'Fish', route: '/dashboard/fish' },
+            { label: 'Hunting', route: '/dashboard/hunting' },
             { label: 'Ranking', route: '/dashboard/ranking' }
           ],
         },
