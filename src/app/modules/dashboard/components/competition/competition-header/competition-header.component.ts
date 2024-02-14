@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable } from "rxjs";
-import { ApiResponse } from '../../../model/api-response';
-import { Page } from '../../../pages/competition/models/page';
+import { ApiResponse } from '../../../../../shared/models/api-response';
+import { Page } from '../../../../../shared/models/competition/page-competition';
 @Component({
   selector: 'app-competition-header',
   standalone: true,

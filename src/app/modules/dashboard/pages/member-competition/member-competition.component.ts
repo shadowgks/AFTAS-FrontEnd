@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterModule, Routes } from '@angular/router';
-import { MemberService } from '../member/service/member.service';
+import { MemberService } from '../../../../core/services/member.service';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
-import { ApiResponse } from '../../model/api-response';
-import { Ranking } from '../ranking/model/ranking';
-import { RankingService } from '../ranking/service/ranking.service';
+import { ApiResponse } from '../../../../shared/models/api-response';
+import { Ranking } from '../../../../shared/models/ranking';
+import { RankingService } from '../../../../core/services/ranking.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { Member } from '../member/models/member';
+import { Member } from '../../../../shared/models/member';
 import { FormsModule } from '@angular/forms';
-import { MemberCompetition } from './models/member-competition';
-import { CompetitionService } from '../competition/service/competition.service';
+import { MemberCompetition } from '../../../../shared/models/member-competition';
+import { CompetitionService } from '../../../../core/services/competition.service';
 import Swal from 'sweetalert2';
 
 

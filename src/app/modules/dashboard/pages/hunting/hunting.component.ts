@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Observable, catchError, map, of, startWith } from 'rxjs';
-import { ApiResponse } from '../../model/api-response';
-import { Hunting } from './models/hunting';
+import { ApiResponse } from '../../../../shared/models/api-response';
+import { Hunting } from '../../../../shared/models/hunting';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { CompetitionService } from '../competition/service/competition.service';
-import { Page } from '../competition/models/page';
+import { CompetitionService } from '../../../../core/services/competition.service';
+import { Page } from '../../../../shared/models/competition/page-competition';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Ranking } from '../ranking/model/ranking';
-import { HuntingService } from './service/hunting.service';
-import { Fish } from './models/fish';
+import { Ranking } from '../../../../shared/models/ranking';
+import { HuntingService } from '../../../../core/services/hunting.service';
+import { Fish } from '../../../../shared/models/fish';
 import Swal from 'sweetalert2';
 
 

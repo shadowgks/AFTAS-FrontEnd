@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse } from '../../../model/api-response';
-import { Fish } from '../models/fish';
-import { Hunting } from '../models/hunting';
+import { ApiResponse } from '../../shared/models/api-response';
+import { Fish } from '../../shared/models/fish';
+import { Hunting } from '../../shared/models/hunting';
 
 
 @Injectable({

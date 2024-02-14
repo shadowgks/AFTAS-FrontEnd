@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderRankingComponent } from '../../components/ranking/header-ranking/header-ranking.component';
-import { CompetitionService } from '../competition/service/competition.service';
-import { ApiResponse } from '../../model/api-response';
-import { Page } from '../competition/models/page';
+import { CompetitionService } from '../../../../core/services/competition.service';
+import { ApiResponse } from '../../../../shared/models/api-response';
+import { Page } from '../../../../shared/models/competition/page-competition';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Ranking } from './model/ranking';
-import { RankingService } from './service/ranking.service';
+import { Ranking } from '../../../../shared/models/ranking';
+import { RankingService } from '../../../../core/services/ranking.service';
 
 @Component({
   selector: 'app-ranking',

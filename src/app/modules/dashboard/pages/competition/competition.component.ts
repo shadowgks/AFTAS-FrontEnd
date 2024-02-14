@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CompetitionHeaderComponent } from '../../components/competition/competition-header/competition-header.component';
-import { CompetitionService } from './service/competition.service';
+import { CompetitionService } from '../../../../core/services/competition.service';
 import { BehaviorSubject, Observable, catchError, map, of, startWith } from 'rxjs';
-import { ApiResponse } from '../../model/api-response';
-import { Page } from './models/page';
+import { ApiResponse } from '../../../../shared/models/api-response';
+import { Page } from '../../../../shared/models/competition/page-competition';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { FormsModule, NgForm } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { Competition } from './models/competition';
+import { Competition } from '../../../../shared/models/competition/competition';
 import { RouterModule } from '@angular/router';
 
 @Component({

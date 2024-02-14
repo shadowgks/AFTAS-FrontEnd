@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiResponse } from '../../../model/api-response';
-import { Ranking } from '../model/ranking';
-import { MemberCompetition } from '../../member-competition/models/member-competition';
+import { ApiResponse } from '../../shared/models/api-response';
+import { Ranking } from '../../shared/models/ranking';
+import { MemberCompetition } from '../../shared/models/member-competition';
 
 @Injectable({
   providedIn: 'root'
