@@ -6,6 +6,7 @@ import { User } from 'src/app/shared/models/user';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthenticatorService {
   private apiServerUrl = "http://localhost:8080/api/v1/auth";
 

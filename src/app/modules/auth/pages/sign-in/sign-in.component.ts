@@ -51,10 +51,10 @@ export class SignInComponent implements OnInit {
     if (this.form.invalid) {
       return;
     }else{
-      this._serviceAuth.login(this.form.value)
-        .subscribe({
+      this._serviceAuth.login(this.form.value).subscribe({
           next: (response: User) => {
             console.log(response);
+            this.setLoggedCredentials(response);
             this._router.navigate(['/']);
           },
           error: error => {
@@ -64,6 +64,9 @@ export class SignInComponent implements OnInit {
     }
   }
 
-  //service
+  setLoggedCredentials(user: User) {
+    localStorage.setItem('authUser', JSON.stringify(user));
+  }
+
   
 }

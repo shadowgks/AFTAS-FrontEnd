@@ -1,7 +1,7 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
+import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 
 const routes: Routes = [
   {
@@ -21,5 +21,12 @@ const routes: Routes = [
     HttpClientModule,
   ],
   exports: [RouterModule],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass: JwtInterceptor,
+      multi: true 
+    },
+  ]
 })
 export class AppRoutingModule {}
