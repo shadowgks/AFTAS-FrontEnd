@@ -58,7 +58,7 @@ export class HuntingComponent implements OnInit {
   listMembersCompetition() {
     this.competitionMemberState$ = this.competitionService.getCompetitionsByCode(this.selectedCompetition).pipe(
       map((response: ApiResponse<Ranking>) => {
-        // console.log(response);
+        console.log(response.result);
         return ({ appState: "app_loaded", appData: response });
       }),
       startWith({ appState: "app_loading" }),
@@ -70,7 +70,7 @@ export class HuntingComponent implements OnInit {
   getAllFish() {
     this.huntingService.getAllFish().subscribe(
       (response: ApiResponse<Fish>) => {
-        // console.log(response);
+        console.log(response);
         this.fishes = response;
         this.fishName = response?.result[0].name;
       },

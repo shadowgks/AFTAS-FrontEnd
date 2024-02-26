@@ -43,7 +43,7 @@ export class SignInComponent implements OnInit {
     this.passwordTextType = !this.passwordTextType;
   }
 
-  onSubmit() {
+  onSubmit() {        
     this.submitted = true;
     const { email, password } = this.form.value;
 

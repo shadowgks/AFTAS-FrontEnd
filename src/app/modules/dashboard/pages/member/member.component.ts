@@ -83,7 +83,7 @@ export class MemberComponent implements OnInit {
         this.memberService.switchMember(memberCode, selectedRoleOrIsEnabled).subscribe(
             (res: ApiResponse<String>) => {
                 this.getMember();
-                
+
                 //// sweet alert
                 const Toast = Swal.mixin({
                     toast: true,
@@ -104,98 +104,6 @@ export class MemberComponent implements OnInit {
             },
         )
     }
-
-
-    // public switchMember(identityMember: string, addFormSwitch: NgForm) {
-    //     // stock info in object
-    //     const reqSwitchMember: switchMember = {
-    //         roleType: addFormSwitch.roleType,
-    //         isWorking: addFormSwitch.isWorking,
-    //     }
-    //     this.memberService.switchMember(identityMember, reqSwitchMember).subscribe(
-    //         (response: ApiResponse<Member>) => {
-    //             console.log(response);
-    //             this.getMember();
-
-    //             // get btn close modal
-    //             const btnClose = document.getElementById('closeModalAdd');
-    //             btnClose?.click();
-
-    //             // sweet alert
-    //             const Toast = Swal.mixin({
-    //                 toast: true,
-    //                 position: 'top-end',
-    //                 showConfirmButton: false,
-    //                 timer: 3000,
-    //                 timerProgressBar: true,
-    //                 didOpen: (toast) => {
-    //                     toast.addEventListener('mouseenter', Swal.stopTimer)
-    //                     toast.addEventListener('mouseleave', Swal.resumeTimer)
-    //                 }
-    //             })
-
-    //             Toast.fire({
-    //                 icon: 'success',
-    //                 title: response.message
-    //             })
-    //         },
-    //         (httpError: HttpErrorResponse) => {
-    //             if (httpError.error.errorsValidation) {
-    //                 // sweet alert
-    //                 const Toast = Swal.mixin({
-    //                     toast: true,
-    //                     position: 'top-end',
-    //                     showConfirmButton: false,
-    //                     timer: 3000,
-    //                     timerProgressBar: true,
-    //                     didOpen: (toast) => {
-    //                         toast.addEventListener('mouseenter', Swal.stopTimer)
-    //                         toast.addEventListener('mouseleave', Swal.resumeTimer)
-    //                     }
-    //                 })
-
-    //                 Toast.fire({
-    //                     icon: 'warning',
-    //                     title: 'You must be validate data!'
-    //                 })
-    //                 for (const keyError of Object.keys(httpError.error.errorsValidation)) {
-    //                     addForm.controls[keyError].setErrors({ "validationError": httpError.error.errorsValidation[keyError] })
-    //                 }
-    //             }
-    //             if (httpError.error.error) {
-    //                 // sweet alert
-    //                 const Toast = Swal.mixin({
-    //                     toast: true,
-    //                     position: 'top-end',
-    //                     showConfirmButton: false,
-    //                     timer: 3000,
-    //                     timerProgressBar: true,
-    //                     didOpen: (toast) => {
-    //                         toast.addEventListener('mouseenter', Swal.stopTimer)
-    //                         toast.addEventListener('mouseleave', Swal.resumeTimer)
-    //                     }
-    //                 })
-
-    //                 Toast.fire({
-    //                     icon: 'error',
-    //                     title: httpError.error.error
-    //                 })
-    //             }
-    //         }
-    //     )
-    // }
-    // updateUserRole(memberId: number): void {
-    //     const selectedRoleId = this.selectedRoleIds[memberId];
-
-    //     this.memberService.updateMemberRole(memberId, selectedRoleId).subscribe(
-    //       () => {
-    //         Swal.fire('Success','Role updated successfully', 'success');
-    //       },
-    //       (error) => {
-    //         Swal.fire('Error','Error updating role', 'error');
-    //       }
-    //     );
-    //   }
 
     public saveMember(addForm: NgForm) {
         this.memberService.saveMember(addForm.value).subscribe(
