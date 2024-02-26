@@ -8,7 +8,7 @@ import { Ranking } from '../../../../shared/models/ranking';
 import { RankingService } from '../../../../core/services/ranking.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { Member } from '../../../../shared/models/member';
+import { Member } from '../../../../shared/models/member/member';
 import { FormsModule } from '@angular/forms';
 import { MemberCompetition } from '../../../../shared/models/member-competition';
 import { CompetitionService } from '../../../../core/services/competition.service';

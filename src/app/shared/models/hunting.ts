@@ -1,5 +1,5 @@
 import { Competition } from "./competition/competition";
-import { Member } from "./member";
+import { Member } from "./member/member";
 import { Fish } from "./fish";
 
 export interface Hunting {

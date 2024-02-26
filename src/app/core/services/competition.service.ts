@@ -5,7 +5,7 @@ import { ApiResponse } from '../../shared/models/api-response';
 import { Page } from '../../shared/models/competition/page-competition';
 import { Competition } from '../../shared/models/competition/competition';
 import { Ranking } from '../../shared/models/ranking';
-import { Member } from '../../shared/models/member';
+import { Member } from '../../shared/models/member/member';
 import { MemberCompetition } from '../../shared/models/member-competition';
 
 @Injectable({

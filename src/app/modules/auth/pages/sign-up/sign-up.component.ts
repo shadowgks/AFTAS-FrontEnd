@@ -53,7 +53,8 @@ export class SignUpComponent implements OnInit {
     }else{
       this._serviceAuth.register(this.form.value).subscribe({
           next: () => {
-            this._router.navigate(['/auth/sign-in']);
+            console.log(this.form.value);
+            // this._router.navigate(['/auth/sign-in']);
           },
           error: error => {
             this.error = error ? error : '';

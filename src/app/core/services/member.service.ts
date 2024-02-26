@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiResponse } from '../../shared/models/api-response';
-import { Member } from '../../shared/models/member';
+import { Member } from '../../shared/models/member/member';
+import { switchMember } from 'src/app/shared/models/member/switch-member';
+import { Role } from 'src/app/shared/models/role';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +24,13 @@ export class MemberService {
 
   searchMembers(searchTerm: string): Observable<ApiResponse<Member>>{
     return this.http.get<ApiResponse<Member>>(`${this.apiServerUrl}/search/${searchTerm}`);
+  }
+
+  switchMember(codeMember: string, switchMember: switchMember): Observable<ApiResponse<Member>>{
+    return this.http.patch<ApiResponse<Member>>(`${this.apiServerUrl}/update-user/${codeMember}`, switchMember);
+  }
+
+  getRoles(){
+    return this.http.get<ApiResponse<Role[]>>(`${this.apiServerUrl}/all-roles`);
   }
 }
